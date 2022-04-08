@@ -36,8 +36,7 @@ def DIV_NN_Dk(n1, arr1, n2, arr2):
 
     # Если нужно найти первую цифру деления на 1
     if sum(min_num) == 1:
-        num_list.append(max_num[0])
-        return MUL_Nk_N(1, num_list, len(max_num) - 1)
+        return [max_num[0], n1]
 
     # Берём у большего числа цифры для деления на меньшее
     for i in range(len(min_num)):
