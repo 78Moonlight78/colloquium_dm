@@ -16,7 +16,6 @@
 
 def DIV_NN_Dk(n1, arr1, n2, arr2):
     num = 0
-    num_list = []
     temp = []
     chk = COM_NN_D(n1, arr1, n2, arr2)
     if chk == 2:
