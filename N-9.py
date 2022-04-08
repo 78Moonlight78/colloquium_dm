@@ -20,4 +20,4 @@ def SUB_NDN_N(n1, A1, n2, A2, D):
     n_res, A_res = SUB_NN_N(n1, A1, n2, A2)
     return n_res, A_res
 
-print(SUB_NDN_N(4, [1, 0, 0, 0], 3, [2,5,0], 3))
+print(SUB_NDN_N(4, [1, 0, 0, 0], 3, [2,5,0], 3))  # проверка 1000 - 3 * 250 = 250
