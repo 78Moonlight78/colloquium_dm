@@ -28,7 +28,7 @@ def DIV_NN_Dk(n1, arr1, n2, arr2):
         n2 = len(min_num)
         max_num = arr2
     else:
-        return [1, [1]]      # Если число делится само на себя, k = 1
+        return [1, [0]]      # Если число делится само на себя, k = 0
 
     # Минимальное не должно быть равно 0
     if not sum(min_num):
