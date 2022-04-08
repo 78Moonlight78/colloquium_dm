@@ -54,9 +54,7 @@ def DIV_NN_Dk(n1, arr1, n2, arr2):
 
     # Деление в столбик
     while COM_NN_D(n_temp, temp, n2,  min_num) != 1:
-        sub = int(''.join(map(str, temp))) - int(''.join(map(str, min_num)))
-        temp = list(map(int, str(sub)))
-        n_temp = len(temp)
+        n_temp, temp = SUB_NN_N(n_temp, temp, n2, min_num)
         num += 1
 
     return [num, k]
