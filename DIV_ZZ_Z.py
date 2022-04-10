@@ -30,7 +30,23 @@ def DIV_ZZ_Z(b_1, n_1, A_1, b_2, n_2, A_2):
         res[0] = b_2
     elif (POZ_Z_D(b_1, n_1, A_1) == 1 and POZ_Z_D(b_2, n_2, A_2) == 2) or POZ_Z_D(b_1, n_1, A_1) == POZ_Z_D(b_2, n_2, A_2) == 1:
         res = DIV_NN_N(nat_1[0], nat_1[1], nat_2[0], nat_2[1])
-        res = ADD_1N_N(res[0], res[1])
+        if MUL_NN_N(res[0], res[1], nat_2[0], nat_2[1]) != nat_1:
+            res = ADD_1N_N(res[0], res[1])
         res = TRANS_N_Z(res[0], res[1])
         res[0] = 1 if (POZ_Z_D(b_1, n_1, A_1) == 1 and POZ_Z_D(b_2, n_2, A_2) == 2) else 0
     return res
+
+
+# Блок для тестирования значений из файла, значения в файле выглядят так:
+# 1 3 100 1 2 20 (-100, -20)
+text = open("tests.txt")
+for lines in text:
+    line = [int(x) for x in lines.split()]
+    zn_1 = "-" if line[0] == 1 else ""
+    zn_2 = "-" if line[3] == 1 else ""
+    print(zn_1, line[2], " // ", zn_2, line[5], " = ", sep='', end='')
+    line[2] = [int(x) for x in list(str(line[2]))]
+    line[5] = [int(x) for x in list(str(line[5]))]
+    result = DIV_ZZ_Z(line[0], line[1], line[2], line[3], line[4], line[5])
+    zn_3 = "-" if result[0] == 1 else ""
+    print(zn_3, *result[2], sep='')
