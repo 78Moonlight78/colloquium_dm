@@ -15,7 +15,7 @@
 
 def MOD_NN_N(n1, arr1, n2, arr2):
     b = arr1.copy()
-    while n1 >= n2:
+    while len(arr1) >= n2:
         arr1 = b.copy()
         a = DIV_NN_N(n1, arr1, n2, arr2)[1]
         arr1 = b
