@@ -12,15 +12,15 @@
 # Выходные данные:
 # Возвращаем результирующий массив k (частное от деления arr1 на arr2 без остатка) и длину этого массива (k) s.
 def DIV_NN_N(n_1, arr_1, n_2, arr_2):
-    s = 0
-    k = []
-    k_t = -1
+    d_t, k_t = DIV_NN_Dk(n_1, arr_1, n_2, arr_2)
+    s = k_t
+    k = [0 for i in range(s+1)]
     while (k_t != 0):
-        d_t, k_t = DIV_NN_Dk(n_1, arr_1, n_2, arr_2)
-        k += [d_t]
+        k[s - k_t] = d_t
         t_1, t_2 = MUL_Nk_N(n_2, arr_2, k_t)
         n_1, arr_1 = SUB_NDN_N(n_1, arr_1, t_1, t_2, d_t)
-        s += 1
+        d_t, k_t = DIV_NN_Dk(n_1, arr_1, n_2, arr_2)
+    k[s - k_t] = d_t
     return [s, k]
 
 a = [2,8,5,5,9]
