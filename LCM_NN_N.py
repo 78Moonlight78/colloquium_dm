@@ -5,4 +5,6 @@
 # НОК двух натуральных чисел равен их произведению, деленному на НОД этих чисел
 
 def LCM_NN_N(n1, A1, n2, A2):
+    m1, m2 = MUL_NN_N(n1, A1, n2, A2)
+    g1, g2 = GCF_NN_N(n1, A1, n2, A2)
     return DIV_NN_N(MUL_NN_N(n1, A1, n2, A2), GCF_NN_N(n1, A1, n2, A2))
