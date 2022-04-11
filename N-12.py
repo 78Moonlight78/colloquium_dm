@@ -21,11 +21,11 @@ def MOD_NN_N(n1, arr1, n2, arr2):
         arr1 = b
 
         if a[0] == 0:
-            return arr1
+            return n1, arr1
         n1, b = SUB_NDN_N(n1, b, n2, arr2, 1)
         arr2.reverse()
-
-    return arr1
+        
+    return n1, arr1
     
     
     print(MOD_NN_N(4, [1, 8, 9, 0] , 2, [3, 1]))
