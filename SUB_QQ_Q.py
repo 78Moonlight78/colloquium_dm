@@ -43,6 +43,6 @@ def SUB_QQ_Q(Q1, Q2):
 
     # Теперь у нас есть числитель (numerator) и знаменатель (denominator) искомой дроби.
     # Сократим получившуюся дробь (если возможно) и вернем результат работы функции.
-    result = RED_Q_Q([numerator[0], numerator[1], numerator[2], denominator[0], denominator[1]])
+    result = [numerator[0], numerator[1], numerator[2], denominator[0], denominator[1]]
 
     return result
