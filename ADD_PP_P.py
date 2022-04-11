@@ -13,23 +13,23 @@
 # Программа возвращает сумму двух многочленов.
 
 
-def ADD_PP_P(P1, P2):
+def ADD_PP_P(m1, P1, m2, P2):
     i = 0
-    diff = abs(P1[0] - P2[0])
-    res = [max(P1[0], P2[0]), []]
+    diff = abs(m1 - m2)
+    res = [max(m1, m2), []]
 
     while i < diff:  # Добавялем в конечный многочлен те элементы, у которых нет пары с одинаковыми степенями.
-        p = P1 if P1[0] > P2[0] else P2
-        res[1] += p[1][i]
+        p = P1 if m1 > m2 else P2
+        res[1] += p[i]
         i += 1
 
     i = 0
 
-    while i <= min(P1[0], P2[0]):  # Складываем элементы с одинаковыми степенями.
-        if P1[0] >= P2[0]:
-            res[1] += [ADD_QQ_Q(P1[1][i + diff], P2[1][i])]
+    while i <= min(m1, m2):  # Складываем элементы с одинаковыми степенями.
+        if m1 >= m2:
+            res[1] += [ADD_QQ_Q(P1[i + diff], P2[i])]
         else:
-            res[1] += [ADD_QQ_Q(P1[1][i], P2[1][i + diff])]
+            res[1] += [ADD_QQ_Q(P1[i], P2[i + diff])]
         i += 1
     return res
 
