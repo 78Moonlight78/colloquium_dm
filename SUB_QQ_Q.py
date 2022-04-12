@@ -19,30 +19,41 @@
 # MUL_ZZ_Z - Умножение целых чисел.
 # SUB_ZZ_Z - Вычитание целых чисел.
 # RED_Q_Q - Сокращение дроби.
+# MUL_ZM_Z - Умножение целого на (-1).
+
+# UPDATE!!! Обработка багов при работе с нулями. Если первая дробь равна 0, то возвращается
+# вторая дробь с противополжным знаком. Если вторая дробь равна 0, то возвращается первая дробь.
+# В противном случае работает исходный алгоритм.
 
 
 def SUB_QQ_Q(Q1, Q2):
-    # denominator (с англ. знаменатель) является знаменателем искомой дроби и представляет собой НОК
-    # знаменателей исходных дробей. denominator - натуральное число, которое хранится в виде массива, где
-    # первый элемент массива - количество разрядов, а второй - массив чисел натурального числа.
-    denominator = LCM_NN_N(Q1[3], Q1[4], Q2[3], Q2[4])
-    # minued (с англ. уменьшаемое) находится как произведение числителя первой дроби и частного НОКа и знаменателя
-    # первой дроби (другими словами, приводим дроби к общему знаменателю).
-    number1_N = DIV_NN_N(denominator[0], denominator[1], Q1[3], Q1[4])
-    # натуральное число приводим в целому, чтобы умножить целое на целое.
-    number1_Z = TRANS_N_Z(number1_N[0], number1_N[1])
-    minuend = MUL_ZZ_Z(Q1[0], Q1[1], Q1[2], number1_Z[0], number1_Z[1], number1_Z[2])
+    if Q1 == [0, 1, [0], 1, [1]]:
+        number = MUL_ZM_Z(Q2[0], Q2[1], Q2[2]) # умножение числителя второй дроби на (-1).
+        return [number[0], number[1], number[2], Q2[3], Q2[4]]
+    elif Q2 == [0, 1, [0], 1, [1]]:
+        return Q1
+    else:
+        # denominator (с англ. знаменатель) является знаменателем искомой дроби и представляет собой НОК
+        # знаменателей исходных дробей. denominator - натуральное число, которое хранится в виде массива, где
+        # первый элемент массива - количество разрядов, а второй - массив чисел натурального числа.
+        denominator = LCM_NN_N(Q1[3], Q1[4], Q2[3], Q2[4])
+        # minued (с англ. уменьшаемое) находится как произведение числителя первой дроби и частного НОКа и знаменателя
+        # первой дроби (другими словами, приводим дроби к общему знаменателю).
+        number1_N = DIV_NN_N(denominator[0], denominator[1], Q1[3], Q1[4])
+        # натуральное число приводим в целому, чтобы умножить целое на целое.
+        number1_Z = TRANS_N_Z(number1_N[0], number1_N[1])
+        minuend = MUL_ZZ_Z(Q1[0], Q1[1], Q1[2], number1_Z[0], number1_Z[1], number1_Z[2])
 
-    # аналогично находим subtrahend (вычитаемое)
-    number2_N = DIV_NN_N(denominator[0], denominator[1], Q2[3], Q2[4])
-    number2_Z = TRANS_N_Z(number2_N[0], number2_N[1])
-    subtrahend = MUL_ZZ_Z(Q2[0], Q2[1], Q2[2], number2_Z[0], number2_Z[1], number2_Z[2])
+        # аналогично находим subtrahend (вычитаемое)
+        number2_N = DIV_NN_N(denominator[0], denominator[1], Q2[3], Q2[4])
+        number2_Z = TRANS_N_Z(number2_N[0], number2_N[1])
+        subtrahend = MUL_ZZ_Z(Q2[0], Q2[1], Q2[2], number2_Z[0], number2_Z[1], number2_Z[2])
 
-    # Уменьшаемое (minuend) - вычитамое (subtrahend) = разность,что есть искомый числитель (с англ. numerator)
-    numerator = SUB_ZZ_Z(minuend[0], minuend[1], minuend[2], subtrahend[0], subtrahend[1], subtrahend[2])
+        # Уменьшаемое (minuend) - вычитамое (subtrahend) = разность,что есть искомый числитель (с англ. numerator)
+        numerator = SUB_ZZ_Z(minuend[0], minuend[1], minuend[2], subtrahend[0], subtrahend[1], subtrahend[2])
 
-    # Теперь у нас есть числитель (numerator) и знаменатель (denominator) искомой дроби.
-    # Сократим получившуюся дробь (если возможно) и вернем результат работы функции.
-    result = [numerator[0], numerator[1], numerator[2], denominator[0], denominator[1]]
+        # Теперь у нас есть числитель (numerator) и знаменатель (denominator) искомой дроби.
+        # Сократим получившуюся дробь (если возможно) и вернем результат работы функции.
+        result = RED_Q_Q([numerator[0], numerator[1], numerator[2], denominator[0], denominator[1]])
 
-    return result
+        return result
