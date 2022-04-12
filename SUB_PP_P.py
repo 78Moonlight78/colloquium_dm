@@ -16,16 +16,16 @@ def SUB_PP_P(a, A, b, B):
     #К примеру, если у многочлена A старшая степень равна 5, а у многочлена B - 3, то мы добавляем к B два 'нулевых' коэффициента(в начало). 
     if (a > b):
         differennce = a - b
-        for (i in range differennce):
+        for i in range (differennce):
             B.insert(0,[0, 1, [0], 1, [1]])
     else:
         differennce = b - a
-         for (i in range differennce):
+        for i in range (differennce):
             A.insert(0,[0, 1, [0], 1, [1]])
     result = []     
     #Используем функцию SUB_QQ_Q() и заполняем массив result   
-    for (i in range max_degree + 1):
-        result += SUB_QQ_Q(A[i], B[i])
+    for i in range (max_degree + 1):
+        result += [SUB_QQ_Q(A[i], B[i])]
     
-    return max_degree, result        
+    return max_degree, result             
     
