@@ -16,20 +16,21 @@
 def ADD_PP_P(m1, P1, m2, P2):
     i = 0
     diff = abs(m1 - m2)
-    res = [max(m1, m2), []]
+    size = max(m1, m2)
+    res = []
 
     while i < diff:  # Добавялем в конечный многочлен те элементы, у которых нет пары с одинаковыми степенями.
         p = P1 if m1 > m2 else P2
-        res[1] += p[i]
+        res += [p[i]]
         i += 1
 
     i = 0
 
     while i <= min(m1, m2):  # Складываем элементы с одинаковыми степенями.
         if m1 >= m2:
-            res[1] += [ADD_QQ_Q(P1[i + diff], P2[i])]
+            res += [ADD_QQ_Q(P1[i + diff], P2[i])]
         else:
-            res[1] += [ADD_QQ_Q(P1[i], P2[i + diff])]
+            res += [ADD_QQ_Q(P1[i], P2[i + diff])]
         i += 1
-    return res
+    return size, res
 
