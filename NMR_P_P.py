@@ -5,5 +5,5 @@
 def NMR_P_P(k,arr):
     z,m = DER_P_P(k,arr)
     u,t = GCF_PP_P(k,arr,z,m)
-    j,l = DIV_PP_P(u,t)
+    j,l = DIV_PP_P(k,arr,u,t)
     return [j,l]
