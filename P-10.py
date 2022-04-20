@@ -17,4 +17,7 @@ def MOD_PP_P(m1, C1, m2, C2):
     m_temp, C_temp = DIV_PP_P(m1, C1, m2, C2)          # частное (b)
     m_temp, C_temp = MUL_PP_P(m_temp, C_temp, m2, C2)  # b * k
     m_res, C_res = SUB_PP_P(m1, C1, m_temp, C_temp)    # r = a - b * k
+    while(C_res[0][2][0] == 0 and m_res > 0):
+        C_res = C_res[1:]
+        m_res -= 1
     return m_res, C_res
