@@ -32,5 +32,9 @@ def ADD_PP_P(m1, P1, m2, P2):
         else:
             res += [ADD_QQ_Q(P1[i], P2[i + diff])]
         i += 1
+        
+    while (res[0][2][0] == 0 and size > 0):  # Убираем незначашие нули
+        size -= 1
+        res.pop(0)
     return size, res
 
