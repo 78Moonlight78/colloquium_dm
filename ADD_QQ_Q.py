@@ -11,6 +11,7 @@
 # Приводим обе дроби к общему знаменателю, приравнивая знаменатель к НОК, и умножая числитель на (НОК/знаменатель числа).
 # Получаем новое рациональное число, в котором числитель - сумма  полученных числителей Q1 и Q2, а
 # знаменатель - НОК знаменателей Q1 и Q2.
+# Сокращаем дробь, если возможно
 
 # Выходные данные:
 # Программа возвращает сумму двух рациональных чисел.
@@ -29,4 +30,6 @@ def ADD_QQ_Q(Q1, Q2):
 
     numerator = ADD_ZZ_Z(minuend[0], minuend[1], minuend[2], subtrahend[0], subtrahend[1], subtrahend[2])
 
-    return [numerator[0], numerator[1], numerator[2], denominator[0], denominator[1]]
+    result = RED_Q_Q([numerator[0], numerator[1], numerator[2], denominator[0], denominator[1]])
+
+    return result
