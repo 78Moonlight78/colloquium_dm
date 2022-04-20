@@ -11,5 +11,4 @@ def DIV_PP_P(m1, C1, m2, C2):
         l_t, c_t = MUL_PQ_P(m2, C2, C[i])  # Умножаем делитель на коэф полученный выше
         l_t, c_t = MUL_Pxk_P(l_t, c_t, m - i)  # Приводим полином к степени делимого
         m1, c1_t = SUB_PP_P(m1, c1_t, l_t, c_t)  # Вычитаем
-        C[i] = RED_Q_Q(C[i])  # Сокращаем дробь
     return [m, C]
