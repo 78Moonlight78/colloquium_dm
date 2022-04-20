@@ -26,6 +26,9 @@ def SUB_PP_P(a, A, b, B):
     #Используем функцию SUB_QQ_Q() и заполняем массив result   
     for i in range (max_degree + 1):
         result += [SUB_QQ_Q(A[i], B[i])]
-    
-    return max_degree, result             
+    #Убираем незначашие нули
+    while (result[0][2][0] == 0 and max_degree > 0):
+        max_degree -= 1
+        result.pop(0)
+    return max_degree, result 
     
