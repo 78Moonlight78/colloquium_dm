@@ -28,7 +28,7 @@ def MUL_PP_P(m1: int, C1: list, m2: int, C2: list) -> tuple:
         res_m, res_C = ADD_PP_P(res_m, res_C, mid_m, mid_C)
 
     # Сокращение всех коэффициентов
-    for ind_1 in range(res_m):
+    for ind_1 in range(res_m+1):
         res_C[ind_1] = RED_Q_Q(res_C[ind_1])
 
     return res_m, res_C
