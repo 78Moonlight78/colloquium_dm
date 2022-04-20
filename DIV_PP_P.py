@@ -1,3 +1,8 @@
+# Задача P-9: Частное от деления многочленов (DIV_PP_P)
+# Выполнил: Шаров Антон, 1310
+
+
+
 def DIV_PP_P(m1, C1, m2, C2):
     c1_t = C1.copy()
     C = [ [0, 1, [0], 1, [1]] for i in range(m1 - m2 + 1)]
@@ -7,4 +12,5 @@ def DIV_PP_P(m1, C1, m2, C2):
         l_t, c_t = MUL_PQ_P(m2, C2, C[i])
         l_t, c_t = MUL_Pxk_P(l_t, c_t, m - i)
         m1, c1_t = SUB_PP_P(m1, c1_t, l_t, c_t)
+        C[i] = RED_Q_Q(C[i])
     return [m, C]
