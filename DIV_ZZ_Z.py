@@ -25,17 +25,18 @@ def DIV_ZZ_Z(b_1, n_1, A_1, b_2, n_2, A_2):
     res = [0, 1, [0]]
     nat_1 = ABS_Z_N(b_1, n_1, A_1)
     nat_2 = ABS_Z_N(b_2, n_2, A_2)
-    if A_1 != [0]:
-        if POZ_Z_D(b_1, n_1, A_1) == POZ_Z_D(b_2, n_2, A_2) == 2 or (POZ_Z_D(b_1, n_1, A_1) == 2 and POZ_Z_D(b_2, n_2, A_2) == 1):
-            res = DIV_NN_N(nat_1[0], nat_1[1], nat_2[0], nat_2[1])
-            res = TRANS_N_Z(res[0], res[1])
-            res[0] = b_2
-        elif (POZ_Z_D(b_1, n_1, A_1) == 1 and POZ_Z_D(b_2, n_2, A_2) == 2) or POZ_Z_D(b_1, n_1, A_1) == POZ_Z_D(b_2, n_2, A_2) == 1:
-            res = DIV_NN_N(nat_1[0], nat_1[1], nat_2[0], nat_2[1])
-            if MUL_NN_N(res[0], res[1], nat_2[0], nat_2[1]) != nat_1:
-                res = ADD_1N_N(res[0], res[1])
-            res = TRANS_N_Z(res[0], res[1])
-            res[0] = 1 if (POZ_Z_D(b_1, n_1, A_1) == 1 and POZ_Z_D(b_2, n_2, A_2) == 2) else 0
+    if POZ_Z_D(b_1, n_1, A_1) == POZ_Z_D(b_2, n_2, A_2) == 2 or (POZ_Z_D(b_1, n_1, A_1) == 2 and POZ_Z_D(b_2, n_2, A_2) == 1):
+        res = DIV_NN_N(nat_1[0], nat_1[1], nat_2[0], nat_2[1])
+        res = TRANS_N_Z(res[0], res[1])
+        res[0] = b_2
+    elif (POZ_Z_D(b_1, n_1, A_1) == 1 and POZ_Z_D(b_2, n_2, A_2) == 2) or POZ_Z_D(b_1, n_1, A_1) == POZ_Z_D(b_2, n_2, A_2) == 1:
+        res = DIV_NN_N(nat_1[0], nat_1[1], nat_2[0], nat_2[1])
+        if MUL_NN_N(res[0], res[1], nat_2[0], nat_2[1]) != nat_1:
+            res = ADD_1N_N(res[0], res[1])
+        res = TRANS_N_Z(res[0], res[1])
+        res[0] = 1 if (POZ_Z_D(b_1, n_1, A_1) == 1 and POZ_Z_D(b_2, n_2, A_2) == 2) else 0
+    if (res[1] == 1 and res[2][0] == 0):
+        res[0] = 0
     return res
 
 
